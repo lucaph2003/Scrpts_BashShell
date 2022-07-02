@@ -1,0 +1,21 @@
+#!/bin/bash
+
+clear
+
+# Credenciales
+user=root
+password=Gr4ndes-cu4tr0
+#host=localhost
+db_name=sistema_edchat
+
+# Otras opciones
+backup_path=/home/lpodesta/BACKUP
+date=$(date +"%d-%b-%Y")
+
+# Dump Base de datos
+mysqldump --user=$user --password=$password $db_name > $backup_path/$db_name-$date.sql
+
+#Comprimir el archivo
+tar -czvf $backup_path/$db_name-$date.sql.tar.gz $backup_path/$db_name-$date.sql
+rm $backup_path/$db_name-$date.sql
+
